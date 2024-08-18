@@ -1,0 +1,28 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Request {
+  createdAt    DateTime  @default(now())
+  id           String    @id @default(cuid())
+  queryText    String?
+  responseText String?
+  timestamp    DateTime?
+  updatedAt    DateTime  @updatedAt
+}
+
+model FlightFare {
+  createdAt   DateTime  @default(now())
+  currency    String?
+  destination String?
+  fare        Float?
+  id          String    @id @default(cuid())
+  origin      String?
+  timestamp   DateTime?
+  updatedAt   DateTime  @updatedAt
+}
